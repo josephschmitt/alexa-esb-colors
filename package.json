@@ -1,0 +1,25 @@
+{
+  "name": "alexa-esb-colors",
+  "version": "1.0.0",
+  "description": "A skill to ask Alexa the meaning of the Empire State Building colors.",
+  "main": "index.js",
+  "dependencies": {
+    "alexa-app": "^2.3.2",
+    "bestzip": "^1.1.3",
+    "bluebird": "^3.3.4",
+    "lodash": "^4.6.1",
+    "moment-timezone": "^0.5.1",
+    "node-lambda": "^0.7.1",
+    "noodlejs": "^0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "bundle": "mkdir -p bundle && cp -r {index.js,lib,node_modules} bundle/ && rm -rf bundle/node_modules/node-expat/build && cp -r node-expat-linux-build/ bundle/node_modules/node-expat/build && cd bundle && bestzip ../lambda.zip * && rm -rf ../bundle"
+  },
+  "keywords": [
+    "alexa",
+    "echo"
+  ],
+  "author": "Joseph Schmitt",
+  "license": "MIT"
+}
