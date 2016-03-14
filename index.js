@@ -5,12 +5,14 @@ var calendar = require('./lib/lightsCalendar.js');
 var moment = require('moment-timezone');
 
 var TIMEZONE = 'Pacific/Honolulu';
+var DATE_FORMAT = 'MMMM DD, YYYY';
+
 var WELCOME_TITLE = 'Welcome to the Empire State Building Tower Lights calendar skill.';
 var WELCOME_DESCRIPTION = ['This skill allows you to find out what the colors of the Empire State ',
-			   'Building mean for a given day.'].join('');
+         'Building mean for a given day.'].join('');
 var HELP_RESPONSE = ['Try saying "Alexa, ask the Empire State Building what the colors are today".',
-		      'Or you can try asking for a specific day by saying "Alexa, ask the Empire ',
-		      'State Building what the colors will be tomorrow"'].join('');
+          'Or you can try asking for a specific day by saying "Alexa, ask the Empire ',
+          'State Building what the colors will be tomorrow"'].join('');
 
 var ESBColors = new alexa.app('esbColors');
 
@@ -34,7 +36,10 @@ ESBColors.intent('AMAZON.HelpIntent', function (request, response) {
 ESBColors.intent('ESBColorToday', function (request, response) {
   calendar.getLightsForDate().then(function (light) {
     var speechOutput = getSpeechResponse(light);
-    response.say(speechOutput).send();
+    response
+      .say(speechOutput)
+      .card('Empire State Building Lights', light.description)
+      .send();
   });
 
   // Async response
@@ -47,7 +52,10 @@ ESBColors.intent('ESBColorDate', function (request, response) {
 
   calendar.getLightsForDate(date).then(function (light) {
     var speechOutput = getSpeechResponse(light, slotData);
-    response.say(speechOutput).send();
+    response
+      .say(speechOutput)
+      .card('Empire State Building Lights: ' + date.format(DATE_FORMAT), light.description)
+      .send();
   });
 
   // Async response
@@ -79,7 +87,7 @@ function getSpeechResponse(result, requestedDate) {
   }
 
   if (requestedDate && !date.isSame(now)) {
-      suffix = ', on ' + date.format('MMMM DD, YYYY');
+    suffix = ', on ' + date.format(DATE_FORMAT);
   }
 
   return 'The Empire State building ' + verb + ' lit ' + description + suffix;
