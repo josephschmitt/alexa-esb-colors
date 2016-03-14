@@ -1,4 +1,4 @@
-# Alex ESB Colors Skill
+# Alexa Empire State Building Colors Skill
 
 This is a skill built for Amazon's Alexa service that queries the Empire State Building's [Tower
 Lights Calendar](https://www.esbnyc.com/explore/tower-lights/calendar). It allows you to ask Alexa
