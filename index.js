@@ -4,10 +4,6 @@ var alexa = require('alexa-app');
 var calendar = require('./lib/lightsCalendar.js');
 var moment = require('moment-timezone');
 
-var TIMEZONE = 'Pacific/Honolulu';
-var DATE_FORMAT = 'MMMM DD, YYYY';
-
-var WELCOME_TITLE = 'Welcome to the Empire State Building Tower Lights calendar skill.';
 var WELCOME_DESCRIPTION = ['This skill allows you to find out what the colors of the Empire State ',
          'Building mean for a given day.'].join('');
 var HELP_RESPONSE = ['Try saying "Alexa, ask the Empire State Building what the colors are today".',
@@ -16,65 +12,69 @@ var HELP_RESPONSE = ['Try saying "Alexa, ask the Empire State Building what the 
 
 var ESBColors = new alexa.app('esbColors');
 
-ESBColors.launch(function (request, response) {
-  var welcome = [WELCOME_DESCRIPTION, HELP_RESPONSE].join(' ');
+ESBColors.launch(handleColorsIntent);
+ESBColors.intent('ESBColorToday', handleColorsIntent);
+ESBColors.intent('ESBColorDate', handleColorsIntent);
+ESBColors.intent('AMAZON.HelpIntent', handleHelpIntent);
 
-  response
-    .say(WELCOME_TITLE)
-    .say(welcome)
-    .card(WELCOME_TITLE, welcome)
-    .send();
-});
+exports.handler = ESBColors.lambda();
 
-ESBColors.intent('AMAZON.HelpIntent', function (request, response) {
-  response
-    .say(HELP_RESPONSE)
-    .card('ESB Colors Help', [WELCOME_DESCRIPTION, HELP_RESPONSE].join(' '))
-    .send();
-});
-
-ESBColors.intent('ESBColorToday', function (request, response) {
-  calendar.getLightsForDate().then(function (light) {
-    var speechOutput = getSpeechResponse(light);
-    response
-      .say(speechOutput)
-      .card('Empire State Building Lights', light.description)
-      .send();
-  });
-
-  // Async response
-  return false;
-});
-
-ESBColors.intent('ESBColorDate', function (request, response) {
+/**
+ * Handles requests for the Empire State Building colors intents.
+ * @param {Object} request -- Request object from AlexaApp module.
+ * @param {Object} response -- Response object from AlexaApp module.
+ * @returns {Boolean}
+ */
+function handleColorsIntent(request, response) {
   var slotData = request.slot('Date');
-  var date = moment(slotData).tz(TIMEZONE);
+  var format = calendar.SPOKEN_DATE_FORMAT;
+  var tz = calendar.TIMEZONE;
+
+  var date = moment(slotData).tz(tz);
+  var now = moment().tz(tz);
+  var cardTitle = 'Empire State Building Lights';
+
+  if (date && date.format(format) !== now.format(format)) {
+    cardTitle += ': ' + date.format(format);
+  }
 
   calendar.getLightsForDate(date).then(function (light) {
-    var speechOutput = getSpeechResponse(light, slotData);
     response
-      .say(speechOutput)
-      .card('Empire State Building Lights: ' + date.format(DATE_FORMAT), light.description)
+      .say(getSpeechResponse(light))
+      .card(cardTitle, light.description)
       .send();
   });
 
   // Async response
   return false;
-});
+}
+
+/**
+ * Hnadles requests for help with the skill.
+ * @param {Object} request -- Request object from AlexaApp module.
+ * @param {Object} response -- Response object from AlexaApp module.
+ * @returns {[type]} [description]
+ */
+function handleHelpIntent(request, response) {
+  response
+    .say(HELP_RESPONSE)
+    .shouldEndSession(false)
+    .card('Empire State Building Lights', [WELCOME_DESCRIPTION, HELP_RESPONSE].join(' '))
+    .send();
+}
 
 /**
  * Returns a formatted speech response given the current date and request information.
- *
  * @param {Object} result -- Tower Lights calendar result
  * @param {String} requestedDate -- Date requested by the user
  * @returns {String}
  */
 function getSpeechResponse(result, requestedDate) {
-  var date = moment(requestedDate || undefined).tz(TIMEZONE);
+  var date = moment(requestedDate || undefined).tz(calendar.TIMEZONE);
 
-  var now = moment();
+  var now = moment().tz(calendar.TIMEZONE);;
   var verb = 'is';
-  var suffix = '.';
+  var suffix = '';
   var description = result ? result.description : 'Signature White';
 
   if (requestedDate) {
@@ -87,10 +87,8 @@ function getSpeechResponse(result, requestedDate) {
   }
 
   if (requestedDate && !date.isSame(now)) {
-    suffix = ', on ' + date.format(DATE_FORMAT);
+    suffix = ', on ' + date.format(calendar.SPOKEN_DATE_FORMAT);
   }
 
-  return 'The Empire State building ' + verb + ' lit ' + description + suffix;
+  return 'The Empire State Building ' + verb + ' lit ' + description + suffix;
 }
-
-exports.handler = ESBColors.lambda();

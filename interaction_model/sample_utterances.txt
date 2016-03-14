@@ -13,13 +13,84 @@ ESBColorToday with the colors
 ESBColorToday the colors are
 ESBColorToday the colors
 ESBColorToday colors
+ESBColorToday what tonight's colors will be
+ESBColorToday what will be tonight's colors
+ESBColorToday what today's colors will be
+ESBColorToday what will be today's colors
+ESBColorToday what the colors will be
+ESBColorToday what will be the colors
+ESBColorToday what will the colors be
+ESBColorToday to give me the color
+ESBColorToday to give today's color
+ESBColorToday to tell me about the lights
+
+ESBColorToday what are tonights lights
+ESBColorToday what are the lights tonight
+ESBColorToday what the lights are tonight
+ESBColorToday what the color means tonight
+ESBColorToday what the lights mean tonight
+ESBColorToday what are the lights
+ESBColorToday what color it is tonight
+ESBColorToday what the lights are
+ESBColorToday about the lights
+ESBColorToday about the color
+ESBColorToday about color
+ESBColorToday with the lights
+ESBColorToday the lights are
+ESBColorToday the lights
+ESBColorToday lights
+ESBColorToday what tonight's lights will be
+ESBColorToday what will be tonight's lights
+ESBColorToday what today's lights will be
+ESBColorToday what will be today's lights
+ESBColorToday what the lights will be
+ESBColorToday what will be the lights
+ESBColorToday what will the lights be
+
 ESBColorDate what will the colors be for {Date}
 ESBColorDate what will the colors be on {Date}
 ESBColorDate what will the colors be {Date}
 ESBColorDate what will {Date} colors be
+ESBColorDate what the colors will be for {Date}
+ESBColorDate what the colors will be on {Date}
+ESBColorDate what the colors will be {Date}
+ESBColorDate what {Date} colors will be
 ESBColorDate what were the colors on {Date}
 ESBColorDate what the colors were {Date}
 ESBColorDate what the colors were on {Date}
 ESBColorDate what the colors were {Date}
 ESBColorDate what was the color on {Date}
 ESBColorDate what the color was on {Date}
+ESBColorDate for colors on {Date}
+ESBColorDate for colors for {Date}
+ESBColorDate {Date} colors
+ESBColorDate give me the colors for {Date}
+ESBColorDate give the colors for {Date}
+ESBColorDate give me {Date} colors
+ESBColorDate give {Date} colors
+ESBColorDate tell me {Date} colors
+ESBColorDate tell me the colors from {Date}
+
+ESBColorDate what will the lights be for {Date}
+ESBColorDate what will the lights be on {Date}
+ESBColorDate what will the lights be {Date}
+ESBColorDate what will {Date} lights be
+ESBColorDate what the lights will be for {Date}
+ESBColorDate what the lights will be on {Date}
+ESBColorDate what the lights will be {Date}
+ESBColorDate what {Date} lights will be
+ESBColorDate what were the lights on {Date}
+ESBColorDate what the lights were {Date}
+ESBColorDate what the lights were on {Date}
+ESBColorDate what the lights were {Date}
+ESBColorDate what were the lights on {Date}
+ESBColorDate what the lights were on {Date}
+ESBColorDate for lights on {Date}
+ESBColorDate for lights for {Date}
+ESBColorDate {Date} lights
+ESBColorDate give me the lights for {Date}
+ESBColorDate give the lights for {Date}
+ESBColorDate give me {Date} lights
+ESBColorDate give {Date} lights
+ESBColorDate tell me {Date} lights
+ESBColorDate tell me the lights from {Date}
