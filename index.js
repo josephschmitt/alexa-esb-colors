@@ -90,5 +90,5 @@ function getSpeechResponse(result, requestedDate) {
     suffix = ', on ' + date.format(calendar.SPOKEN_DATE_FORMAT);
   }
 
-  return 'The Empire State Building ' + verb + ' lit ' + description + suffix;
+  return 'The Empire State Building ' + verb + ' lit ' + description.replace(' & ', ' and ') + suffix;
 }
