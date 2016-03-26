@@ -37,5 +37,5 @@ developing for.
 You can also use [node-lambda](https://github.com/motdotla/node-lambda) to deploy to your Lambda
 function directly from the command line. Simply add a deploy.env file with your environment
 configuration (and double check the supplied .env file in this repository) and then run
-`node-lambda deploy`. Please visit the node-lambda project page for more information on deploying
-from the command line.
+`node-lambda deploy`. Please visit the [node-lambda](https://github.com/motdotla/node-lambda)
+project page for more information on deploying from the command line.
