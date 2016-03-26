@@ -14,6 +14,12 @@ Alexa will respond with the description for the lights from the Tower Lights sch
 day. This is also used as a sample project for those learning how to write Alexa apps using nodejs,
 Amazon's Lambda service, and the Alexa Skills Kit.
 
+If you're just getting started developing skills for Alexa, I'd recommend reading [Getting Started
+with the Alexa Skills
+Kit](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/getting-started-guide) and
+[Developing an Alexa Skill as a Lambda
+Function](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-lambda-function) to get familiar with the process.
+
 ## Testing The Skill Locally
 
 You can use [node-lambda](https://github.com/motdotla/node-lambda) to test this skill locally. In
@@ -22,9 +28,22 @@ pretty well to each Intent. To test an intent, simply copy the contents of one o
 that directory and overwrite the contents of `event.json`. Then run `node-lambda run` from the
 command line.
 
-## Deploying to Lambda
+## Setting up the Skill
 
-To deploy to Amazon Lambda, first makes sure you do an `npm install` at the root of the project.
+To set up the skill, head on over to [Alexa skills kit
+development console](https://developer.amazon.com/edw/home.html) and add a new skill. Fill in the
+basic skill information however you choose, then head on over to Interaction Model. In the Intent
+Schema field, copy and paste the contents of the `interaction_model/intent_schema.json` file. Then
+in the Sample Utterances field, copy and paste the contents of
+`interaction_model/sample_utterances.txt`.
+
+## Hosting the Skill
+
+The skill is built to be easily hosted on Amazon's [AWS
+Lambda service](https://aws.amazon.com/lambda/). Create your Lambda function (using the
+alexa-skills-kit-color-expert blueprint) and make sure you choose Node.js as the runtime.
+
+To deploy to Lambda, first makes sure you do an `npm install` at the root of the project.
 Once all the dependencies are installed, run `npm run bundle`, which will create a lambda.zip file.
 You can then upload that zip file to Lambda for use in your function and skill.
 
