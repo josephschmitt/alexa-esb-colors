@@ -16,10 +16,10 @@
     "intent": {
       "name": "ESBColorDate",
       "slots": {
-	"Date": {
-	  "name": "Date",
-	  "value": "2016-03-12"
-	}
+        "Date": {
+          "name": "Date",
+          "value": "2016-03-12"
+        }
       }
     }
   }
